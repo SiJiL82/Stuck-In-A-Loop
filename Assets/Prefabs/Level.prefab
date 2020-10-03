@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3967232231981853241}
   - component: {fileID: 3967232231981853240}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Front Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 3967232232588298816}
   - component: {fileID: 3967232232588298817}
   - component: {fileID: 3967232232588298822}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,6 +426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a02041492d4294fb7c65a9e76c7bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  codeTextUI: {fileID: 0}
+  codeScript: {fileID: 0}
 --- !u!114 &3967232233412656114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,8 +444,6 @@ MonoBehaviour:
   titleTextModel_prefab: {fileID: 6727776421727272560, guid: 02f4546e5a675d744be7b16f23b22613,
     type: 3}
   titleTextSpawnRate: 1.5
-  codeTextUI: {fileID: 0}
-  codeScript: {fileID: 11400000, guid: 70ef5caf2657c8a419e23e06f238bcab, type: 2}
   spawnForce: 200
 --- !u!1 &3967232233491482850
 GameObject:
@@ -454,7 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3967232233491482781}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}

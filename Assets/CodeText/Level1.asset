@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3174ca43eded6a4fbcb0bf92e1afd8c, type: 3}
+  m_Script: {fileID: 11500000, guid: b70eccb777c05eb40bdc37b89913256e, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
+  _codeText: "while(numRedObjects < numBlueObjects)\n{\n\tnumRedObjects = CountObjects(\"red\");\n\tnumBlueObject
+    = CountObjects(\"blue\");\n}\n\nLoadCongratulationsVFX();\nLoadNextLevel();"

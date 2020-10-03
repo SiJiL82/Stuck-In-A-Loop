@@ -5,7 +5,7 @@ using UnityEngine;
 public class CodePanel : MonoBehaviour
 {   
     //Config
-    //[SerializeField] float panelWidth = 110f;
+    
 
     //Variables
     float panelWidth;

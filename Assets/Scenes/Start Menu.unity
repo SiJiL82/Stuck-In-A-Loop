@@ -250,6 +250,17 @@ PrefabInstance:
       propertyPath: codeTextUI
       value: 
       objectReference: {fileID: 1032783510}
+    - target: {fileID: 3967232233412656115, guid: 30ff0f0c4bd744d4894faa798d00f4ee,
+        type: 3}
+      propertyPath: codeTextUI
+      value: 
+      objectReference: {fileID: 1032783510}
+    - target: {fileID: 3967232233412656115, guid: 30ff0f0c4bd744d4894faa798d00f4ee,
+        type: 3}
+      propertyPath: codeScript
+      value: 
+      objectReference: {fileID: 11400000, guid: 70ef5caf2657c8a419e23e06f238bcab,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30ff0f0c4bd744d4894faa798d00f4ee, type: 3}
 --- !u!1001 &5264922017572031822

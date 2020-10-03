@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     //Config
+    [SerializeField] GameObject codeTextUI = null;
+    [SerializeField] CodeScript codeScript = null;
 
     //Variables
 
@@ -12,7 +14,7 @@ public class LevelManager : MonoBehaviour
     
     void Start()
     {
-
+        codeTextUI.GetComponent<UICodeText>().displayText = codeScript.codeText;
     }
 
     

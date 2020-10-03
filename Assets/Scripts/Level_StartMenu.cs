@@ -9,9 +9,6 @@ public class Level_StartMenu : MonoBehaviour
     [SerializeField] GameObject playButton = null;
     [SerializeField] GameObject titleTextModel_prefab = null;
     [SerializeField] float titleTextSpawnRate = 3f;
-    [SerializeField] GameObject codeTextUI = null;
-    [SerializeField] CodeScript codeScript = null;
-
     [SerializeField] float spawnForce = 100f;
 
     //Variables
@@ -24,7 +21,6 @@ public class Level_StartMenu : MonoBehaviour
         //playButton.GetComponent<PlayButton>().hasBeenClicked
         GetPlayButtonPushed();
         StartCoroutine(SpawnTitleText());
-        codeTextUI.GetComponent<UICodeText>().displayText = codeScript.codeText;
     }
 
     IEnumerator SpawnTitleText()
