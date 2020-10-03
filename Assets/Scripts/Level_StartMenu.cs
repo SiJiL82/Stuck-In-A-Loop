@@ -10,7 +10,7 @@ public class Level_StartMenu : MonoBehaviour
     [SerializeField] GameObject titleTextModel_prefab = null;
     [SerializeField] float titleTextSpawnRate = 3f;
     [SerializeField] GameObject codeTextUI = null;
-    [SerializeField] CodeScript codeScript;
+    [SerializeField] CodeScript codeScript = null;
 
     [SerializeField] float spawnForce = 100f;
 
@@ -31,10 +31,13 @@ public class Level_StartMenu : MonoBehaviour
     {
         while(!playButtonPushed)
         {
+            Debug.Log(playButtonPushed);
             GameObject titleText = Instantiate(titleTextModel_prefab, transform.position, titleTextModel_prefab.transform.rotation, transform);
-            Vector3 force = new Vector3(0f, 0f, Random.Range(-spawnForce, spawnForce));
+            //GameObject titleText = Instantiate(titleTextModel_prefab, transform.position, transform.rotation, transform);
+            Vector3 force = new Vector3(Random.Range(-spawnForce, spawnForce), 0f, 0f);
             titleText.GetComponent<Rigidbody>().AddForce(force);
             Destroy(titleText, 30f);
+            GetPlayButtonPushed();
 
             yield return new WaitForSeconds(titleTextSpawnRate);
         }

@@ -38,7 +38,7 @@ public class UICodeText : MonoBehaviour
 
     private void LoadNewDisplayText()
     {
-
+        SetDimensions();
         //codeText.text = displayText;
         StartCoroutine(AnimateText());
     }
@@ -54,16 +54,14 @@ public class UICodeText : MonoBehaviour
         RectTransform rectTransform = GetComponent<RectTransform>();
         RectTransform parentRectTransform = parentPanel.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = parentRectTransform.anchoredPosition;
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, parentRectTransform.sizeDelta.x);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, parentRectTransform.sizeDelta.x - 60f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, parentRectTransform.sizeDelta.y - 60f);
     }
 
     IEnumerator AnimateText()
     {
         while(codeText.text.Length < _displayText.Length)
         {
-            Debug.Log(codeText.text.Length);
-            Debug.Log(_displayText[codeText.text.Length]);
-            Debug.Log($"codeText: {codeText.text}");
             codeText.text = string.Concat(codeText.text, _displayText[codeText.text.Length]);
             yield return new WaitForSeconds(LoadTextAnimationSpeed);
         }

@@ -9,6 +9,7 @@ public class CodePanel : MonoBehaviour
 
     //Variables
     float panelWidth;
+    float panelHeight;
 
     //References
 
@@ -18,6 +19,7 @@ public class CodePanel : MonoBehaviour
     {
         RectTransform parentRectTransform = transform.parent.gameObject.GetComponent<RectTransform>();
         panelWidth = parentRectTransform.sizeDelta.x / 2;
+        panelHeight = parentRectTransform.sizeDelta.y;
         SetDimensions();
     }
 
@@ -34,6 +36,7 @@ public class CodePanel : MonoBehaviour
         //rectTransform.sizeDelta = new Vector2(110f, 100f);
         rectTransform.anchoredPosition = new Vector3(-(panelWidth / 2), 0f, 0f);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, panelWidth);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, panelHeight);
 
     }
 }

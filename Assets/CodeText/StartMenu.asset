@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70eccb777c05eb40bdc37b89913256e, type: 3}
   m_Name: StartMenu
   m_EditorClassIdentifier: 
-  _codeText: "while(playButtonPushed == false)\n\t{\n\t\tnewTitleText = SpawnGameTitleText();\n\t\tnewTitleText.SpawnForce(-100,
+  _codeText: "while(playButtonPushed == false)\n\t{\n\t\tnewTitleText = SpawnGameTitleText();\n\t\tnewTitleText.SpawnForceBetweenRange(-100,
     100);\n\t\tDestroyWithDelay(newTitleText, 30);\n\n\t\tWaitBeforeNextSpawn(3);\n\t}\n\nLoadLevel(\"Level
     1\");"
