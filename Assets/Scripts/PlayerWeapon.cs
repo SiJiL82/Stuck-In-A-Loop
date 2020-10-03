@@ -9,9 +9,9 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] Transform displayContainerPosition = null;
 
     //Variables
-    private GameObject absorbedObject = null;
-    private string absorbedObjectColourName;
-    private string absorbedObjectShape;
+    private GameObject weaponObject = null;
+    private string weaponObjectColourName;
+    private string weaponObjectShape;
     
 
 
@@ -33,7 +33,21 @@ public class PlayerWeapon : MonoBehaviour
     public void Fire()
     {
         //Primary fire, shoot an absorbed object, if one exists.
-        GetHitObject();
+        //Check we have an object stored first, don't fire if not
+        if(weaponObject)
+        {
+            GameObject hitObject = GetHitObject();
+            if(hitObject)
+            {
+                //Set the hit object properties to match what we have stored
+                LevelObject objectProperties = hitObject.GetComponent<LevelObject>();
+                objectProperties.SetNewProperties(weaponObjectShape, weaponObjectColourName);
+            }
+        }
+        else
+        {
+            //Play some error vfx
+        }
     }
 
     public void AltFire()
@@ -52,7 +66,7 @@ public class PlayerWeapon : MonoBehaviour
 
         if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitObject))
         {
-            Debug.Log($"Mouse click on {hitObject.transform.gameObject.name}");
+            //Debug.Log($"Mouse click on {hitObject.transform.gameObject.name}");
             if(hitObject.transform.tag == "LevelObject")
             {
                 return hitObject.transform.gameObject;
@@ -75,7 +89,11 @@ public class PlayerWeapon : MonoBehaviour
         //Tell the object to animate
         absorbedObject.enableRotation = true;
         
+        //Destroy an existing object if we have one
+        DestroyExistingWeaponObject();
+
         //Set the absorbed object as our one for firing.
+        SetWeaponObjectProperties(objectToAbsorb);
     }
 
     private IEnumerator PullObject(GameObject objectToPull, Vector3 targetPosition, Vector3 targetScale, float speed)
@@ -97,7 +115,16 @@ public class PlayerWeapon : MonoBehaviour
 
     private void SetWeaponObjectProperties(GameObject absorbedObject)
     {
-        
+        weaponObject = absorbedObject;
+        weaponObjectColourName = absorbedObject.GetComponent<LevelObject>().colourName;
+        weaponObjectShape = absorbedObject.GetComponent<LevelObject>().shapeName;
     }
 
+    private void DestroyExistingWeaponObject()
+    {
+        if(weaponObject)
+        {
+            Destroy(weaponObject);
+        }
+    }
 }

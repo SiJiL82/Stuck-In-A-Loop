@@ -180,6 +180,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1689098453275845832, guid: 30ff0f0c4bd744d4894faa798d00f4ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Cube_Red (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693922043137232917, guid: 30ff0f0c4bd744d4894faa798d00f4ee,
+        type: 3}
+      propertyPath: _shapeName
+      value: square
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693922043137232917, guid: 30ff0f0c4bd744d4894faa798d00f4ee,
+        type: 3}
+      propertyPath: _colourName
+      value: red
+      objectReference: {fileID: 0}
     - target: {fileID: 3967232231952229802, guid: 30ff0f0c4bd744d4894faa798d00f4ee,
         type: 3}
       propertyPath: m_LocalPosition.x
