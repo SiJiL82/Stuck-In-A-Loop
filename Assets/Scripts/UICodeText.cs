@@ -7,6 +7,8 @@ public class UICodeText : MonoBehaviour
 {
     //Config
     [SerializeField] float LoadTextAnimationSpeed = 0.3f;
+    [SerializeField] AudioClip sfxTextTyping = null;
+    [SerializeField] float sfxTextTypingVolume = 0.5f;
 
     //Variables
     private string _displayText;
@@ -27,6 +29,7 @@ public class UICodeText : MonoBehaviour
 
     //References
     private Text codeText;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,7 @@ public class UICodeText : MonoBehaviour
         parentPanel = transform.parent.gameObject;
         codeText = GetComponent<Text>();
         SetDimensions();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void LoadNewDisplayText()
@@ -63,6 +67,7 @@ public class UICodeText : MonoBehaviour
         while(codeText.text.Length < _displayText.Length)
         {
             codeText.text = string.Concat(codeText.text, _displayText[codeText.text.Length]);
+            audioSource.PlayOneShot(sfxTextTyping, sfxTextTypingVolume);
             yield return new WaitForSeconds(LoadTextAnimationSpeed);
         }
     }

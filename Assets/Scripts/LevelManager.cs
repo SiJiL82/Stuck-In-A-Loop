@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class LevelManager : MonoBehaviour
     //Config
     [SerializeField] GameObject codeTextUI = null;
     [SerializeField] CodeScript codeScript = null;
+    [SerializeField] GameObject EndLevelVFXPrefab = null;
 
     //Variables
     private int _numRedObjects = 0;
@@ -30,6 +32,23 @@ public class LevelManager : MonoBehaviour
     private int _numCircles = 0;
     public int numCircles{get{return _numCircles;} private set{}}
 
+    private bool _levelWon = false;
+    public bool levelWon
+    {
+        get
+        {
+            return _levelWon;
+        }
+        set
+        {
+            _levelWon = value;
+            if(value == true)
+            {
+                EndLevel();
+            }
+        }
+    }
+
 
     //References
     
@@ -42,7 +61,13 @@ public class LevelManager : MonoBehaviour
     
     void Update()
     {
-        
+    
+    }
+
+    private void EndLevel()
+    {
+        Transform vfxSpawnLocation = transform.Find("LevelCompleteVFXSpawnLocation");
+        Instantiate(EndLevelVFXPrefab, vfxSpawnLocation.position, Quaternion.identity);
     }
 
     public void CountLevelObjects()

@@ -606,6 +606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e846f959b1314a468ce1d3dec4957a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numRedObjects: 0
+  numBlueObjects: 0
 --- !u!1 &2120281255 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5264922018551390697, guid: f3fecf56cf9c9854ba859623f8582185,
@@ -845,6 +847,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ac6dbae14cc1a4b4fb9c99a48a92f69e,
         type: 2}
+    - target: {fileID: 3967232233412656115, guid: 30ff0f0c4bd744d4894faa798d00f4ee,
+        type: 3}
+      propertyPath: EndLevelVFXPrefab
+      value: 
+      objectReference: {fileID: 371365091171239417, guid: afd8e0261b04ead4ea10e346abb6cb9c,
+        type: 3}
+    - target: {fileID: 6405160724780219424, guid: 30ff0f0c4bd744d4894faa798d00f4ee,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405160724780219424, guid: 30ff0f0c4bd744d4894faa798d00f4ee,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405160724780219424, guid: 30ff0f0c4bd744d4894faa798d00f4ee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.27
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30ff0f0c4bd744d4894faa798d00f4ee, type: 3}
 --- !u!1001 &5264922017572031822
@@ -854,6 +877,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2921912657833535537, guid: f3fecf56cf9c9854ba859623f8582185,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5264922017228411756, guid: f3fecf56cf9c9854ba859623f8582185,
         type: 3}
       propertyPath: m_Name

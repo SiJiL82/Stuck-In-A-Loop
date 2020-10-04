@@ -27,12 +27,17 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            //Left click, fire current object
-            playerWeapon.Fire();
+            //Left click, fire current shape
+            playerWeapon.PrimaryFire();
         }
         if(Input.GetMouseButtonDown(1))
         {
-            //Right click, absorb target object
+            //Right click, fire current colour
+            playerWeapon.SecondaryFire();
+        }
+        if(Input.GetMouseButtonDown(2))
+        {
+            //Middle click, absorb targetted object
             playerWeapon.AltFire();
         }
     }

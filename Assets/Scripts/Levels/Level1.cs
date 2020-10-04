@@ -17,7 +17,7 @@ public class Level1 : MonoBehaviour
         levelManager = GetComponent<LevelManager>();
 
         StartCoroutine(GameLoop());
-        Debug.Log("Level Completed");
+        
     }
 
     IEnumerator GameLoop()
@@ -29,12 +29,13 @@ public class Level1 : MonoBehaviour
         {
             numRedObjects = levelManager.CountObjectsByShapeAndColour(colour:"red");
             numBlueObjects = levelManager.CountObjectsByShapeAndColour(colour:"blue");
-            Debug.Log($"RedObjects: {numRedObjects}");
-            Debug.Log($"BlueObjects: {numBlueObjects}");
+            //Debug.Log($"RedObjects: {numRedObjects}");
+            //Debug.Log($"BlueObjects: {numBlueObjects}");
 
             yield return new WaitForSeconds(2f);
         }
         Debug.Log("Ending game loop");
+        levelManager.levelWon = true;
     }
 
 

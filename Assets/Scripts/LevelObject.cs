@@ -8,9 +8,31 @@ public class LevelObject : MonoBehaviour
     [Header("Properties")]
     private Color32 _materialColour;
     [SerializeField] private string _shapeName = null;
-    public string shapeName{get{return _shapeName;} private set{}}
+    public string shapeName
+    {
+        get
+        {
+            return _shapeName;
+        }
+        set
+        {
+            _shapeName = value;
+            SetMesh();
+        }
+    }
     [SerializeField] private string _colourName = null;
-    public string colourName{get{return _colourName;} private set{}}
+    public string colourName
+    {
+        get
+        {
+            return _colourName;
+        }
+        set
+        {
+            _colourName = value;
+            SetColour();
+        }
+    }
     [Header("Meshes")]
     [SerializeField] Mesh[] objectMeshes = null;
 
@@ -74,19 +96,7 @@ public class LevelObject : MonoBehaviour
     private void SetColour()
     {
         Renderer objectRenderer = GetComponent<Renderer>();
-        switch(_colourName)
-        {
-            case "red" : objectRenderer.material.color = Color.red;
-                break;
-            case "blue" : objectRenderer.material.color = Color.blue;
-                break;
-            case "green" : objectRenderer.material.color = Color.green;
-                break;
-            case "yellow" : objectRenderer.material.color = Color.yellow;
-                break;
-            default : Debug.Log($"No colour name set on {gameObject.name}");
-                break;
-        }
+        objectRenderer.material.color = (Color)typeof(Color).GetProperty(colourName.ToLowerInvariant()).GetValue(null, null);
     }
 
     public void SetNewProperties(string newShapeName, string newShapeColour)
@@ -96,5 +106,4 @@ public class LevelObject : MonoBehaviour
         SetMesh();
         SetColour();
     }
-
 }

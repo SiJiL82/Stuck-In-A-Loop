@@ -1,12 +1,28 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
+using UnityEngine.VFX.Utility;
 
 public class PlayerWeapon : MonoBehaviour
 {
     //Config
+    [Header("Hardpoints")]
     [SerializeField] Transform muzzlePosition = null;
     [SerializeField] Transform displayContainerPosition = null;
+    [Header("SFX")]
+    [SerializeField] AudioClip sfxPrimaryFire = null;
+    [SerializeField] float sfxPrimaryFireVolume = 0.5f;
+    [SerializeField] AudioClip sfxSecondaryFire = null;
+    [SerializeField] float sfxSecondaryFireVolume = 0.5f;
+    [SerializeField] AudioClip sfxAltFire = null;
+    [SerializeField] float sfxAltFireVolume = 0.5f;
+    [SerializeField] AudioClip sfxErrorFire = null;
+    [SerializeField] float sfxErrorFireVolume = 0.5f;
+    [Header("VFX")]
+    [SerializeField] GameObject vfxFireErrorPrefab = null;
+
 
     //Variables
     private GameObject weaponObject = null;
@@ -30,34 +46,83 @@ public class PlayerWeapon : MonoBehaviour
         
     }
 
-    public void Fire()
+    public void PrimaryFire()
     {
-        //Primary fire, shoot an absorbed object, if one exists.
+        //Primary fire, change targetted object's shape.
+        Fire("shape");
+    }
+
+    public void SecondaryFire()
+    {
+        //Secondary fire, change targetted object's colour.
+        Fire("colour");
+    }
+
+    public void Fire(string fireMode)
+    {
         //Check we have an object stored first, don't fire if not
-        if(weaponObject)
-        {
-            GameObject hitObject = GetHitObject();
-            if(hitObject)
+        GameObject hitObject = GetHitObject();
+        if(hitObject)
             {
-                //Set the hit object properties to match what we have stored
-                LevelObject objectProperties = hitObject.GetComponent<LevelObject>();
-                objectProperties.SetNewProperties(weaponObjectShape, weaponObjectColourName);
+                if(weaponObject)
+                {
+                    //Set the hit object's shape to match what we have stored
+                    LevelObject objectProperties = hitObject.GetComponent<LevelObject>();
+                    if(fireMode == "shape")
+                    {
+                        objectProperties.shapeName = weaponObjectShape;
+                    }
+                    else if(fireMode == "colour")
+                    {
+                        objectProperties.colourName = weaponObjectColourName;
+                    }
+                    //play FX
+                    PlayFireSFX(sfxPrimaryFire, sfxPrimaryFireVolume);
+                    PlayContainerVFX(vfxFireErrorPrefab, "yellow", 6f);
+                }
+                else
+                {
+                    //Play some error vfx
+                    PlayContainerErrorVFX();
+                    PlayContainerErrorSFX();
+                }
             }
-        }
-        else
-        {
-            //Play some error vfx
-        }
+    }
+
+    private void PlayContainerErrorVFX()
+    {
+        PlayContainerVFX(vfxFireErrorPrefab, "red", 6f);
+    }
+
+    private void PlayContainerErrorSFX()
+    {
+        PlayFireSFX(sfxErrorFire, sfxErrorFireVolume);
     }
 
     public void AltFire()
     {
-        //Secondary fire, absorbs the targetted object
+        //Absorbs the targetted object
         GameObject hitObject = GetHitObject();
         if(hitObject)
         {
             AbsorbObject(hitObject);
+            //play FX
+            PlayFireSFX(sfxAltFire, sfxAltFireVolume);
         }
+    }
+
+    private void PlayContainerVFX(GameObject vfxToPlay, string colourName, float intensity)
+    {
+        GameObject vfxObject = Instantiate(vfxToPlay, displayContainerPosition.position, Quaternion.identity, displayContainerPosition);
+        VisualEffect vfx = vfxObject.GetComponent<VisualEffect>();
+        ExposedProperty colourProperty = "Colour";
+        Vector4 colourToSet;
+        float hdrMultiplication = Mathf.Pow(2, intensity);
+        colourToSet = (Color)typeof(Color).GetProperty(colourName.ToLowerInvariant()).GetValue(null, null);
+
+        colourToSet = colourToSet * hdrMultiplication;
+        
+        vfx.SetVector4(colourProperty, colourToSet);
     }
 
     private GameObject GetHitObject()
@@ -126,5 +191,12 @@ public class PlayerWeapon : MonoBehaviour
         {
             Destroy(weaponObject);
         }
+    }
+
+    private void PlayFireSFX(AudioClip clipToPlay, float clipVolume)
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        
+        audioSource.PlayOneShot(clipToPlay, clipVolume);
     }
 }
